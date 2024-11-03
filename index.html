@@ -53,11 +53,23 @@
           'https://via.placeholder.com/600x300?text=Slide+2',
           'https://via.placeholder.com/600x300?text=Slide+3',
         ],
+        interval: null,
+        startAutoPlay() {
+            this.interval = setInterval(() => {
+                this.next();
+            }, 3000); // Change every 3 seconds
+        },
+        stopAutoPlay() {
+            clearInterval(this.interval);
+        },
         next() {
           this.currentIndex = (this.currentIndex + 1) % this.images.length;
         },
         prev() {
           this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        },
+        init() {
+            this.startAutoPlay();
         }
       };
     }
