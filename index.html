@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpine.js Carousel</title>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <style>
+    .carousel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+    .carousel img {
+      width: 100%;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 0;
+    }
+    .carousel img.active {
+      opacity: 1;
+    }
+    button {
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div x-data="carousel()" class="carousel">
+    <button @click="prev" class="absolute left-0 bg-gray-700 text-white px-3 py-2 rounded">Previous</button>
+    
+    <template x-for="(image, index) in images" :key="index">
+      <img :src="image" :class="{'active': index === currentIndex}" alt="Carousel Image">
+    </template>
+
+    <button @click="next" class="absolute right-0 bg-gray-700 text-white px-3 py-2 rounded">Next</button>
+  </div>
+
+  <script>
+    function carousel() {
+      return {
+        currentIndex: 0,
+        images: [
+          'https://via.placeholder.com/600x300?text=Slide+1',
+          'https://via.placeholder.com/600x300?text=Slide+2',
+          'https://via.placeholder.com/600x300?text=Slide+3',
+        ],
+        next() {
+          this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        },
+        prev() {
+          this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+        }
+      };
+    }
+  </script>
+</body>
+</html>
