@@ -70,6 +70,15 @@ Now we’ll define the carousel functionality in an Alpine component, setting th
         'https://via.placeholder.com/600x300?text=Slide+2',
         'https://via.placeholder.com/600x300?text=Slide+3',
       ],
+      interval: null,
+      startAutoPlay() {
+          this.interval = setInterval(() => {
+              this.next();
+          }, 3000); // Change every 3 seconds
+      },
+      stopAutoPlay() {
+          clearInterval(this.interval);
+      },
       // Method to go to the next image
       next() {
         this.currentIndex = (this.currentIndex + 1) % this.images.length;
@@ -77,6 +86,9 @@ Now we’ll define the carousel functionality in an Alpine component, setting th
       // Method to go to the previous image
       prev() {
         this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+      },
+      init() {
+          this.startAutoPlay();
       }
     };
   }
@@ -93,12 +105,19 @@ Now we’ll define the carousel functionality in an Alpine component, setting th
 2. **Alpine.js Data and Methods**:
    - **`currentIndex`**: Tracks the current image being displayed.
    - **`images`**: An array containing the URLs of the images for the carousel.
+   - **startAutoPlay() and stopAutoPlay()**: Start and stop the auto-play with a 3-second interval.
    - **`next()`**: Increments `currentIndex`. If it exceeds the number of images, it resets to the beginning.
    - **`prev()`**: Decrements `currentIndex`. If it goes below zero, it wraps around to the last image.
+   - **init()**: Starts the auto-play when the carousel is initialized.
 
 ### Step 4: Style the Carousel
 
 We added basic CSS styles for the carousel and buttons for positioning and visibility. The CSS transitions give the images a fade-in effect.
+
+### Step 5: Auto-Play and Clickable Controls
+
+- **Auto-play**: Auto-plays using `startAutoPlay()` in `init()`.
+- **Click Controls**: Buttons trigger `prev()` and `next()` functions to navigate slides.
 
 ### Summary
 
@@ -106,4 +125,4 @@ We added basic CSS styles for the carousel and buttons for positioning and visib
 - **CSS transitions** create a fade effect as images change.
 - **Button clicks** trigger Alpine methods for easy navigation.
 
-This is a basic carousel that you can expand with autoplay, custom indicators, and more styling as desired.
+This example provides both auto-play functionality and clickable controls, making the carousel interactive. Let me know if you'd like further customization or additional features!
