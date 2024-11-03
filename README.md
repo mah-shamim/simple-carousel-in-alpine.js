@@ -1,3 +1,4 @@
+![simple-carousel-in-alpine-js](./simple-carousel-in-alpine-js.png)
 Here's a step-by-step example of creating a simple carousel using [Alpine.js](https://alpinejs.dev/). Alpine.js is a lightweight JavaScript framework that provides reactivity and can be used to build interactive components without a lot of JavaScript.
 
 In this example, we'll create a basic carousel that displays images one at a time, with "Previous" and "Next" buttons to navigate through them. Let's get started!
